@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{%  set datolen = data|length  %}
+
+
+    <h1 class="display-8" style="color:#ff0037"> Factura Nº  {{data2}}  </h1>
+    <h1 class="display-8" style="color:#ff0037"> Cliente: {{cliente}}    </h1>
+        <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
+            <thead>
+            
+              <tr>
+
+                <!-- <td style="text-align: center;">Nº Factura</td> -->                       
+                <td style="text-align: center;">Fecha</td>                        
+                <td style="text-align: center;">Abono</td>
+                <td style="text-align: center;">Debe</td>
+               <!-- <td style="text-align: center;">Operacion</td>-->
+              </tr>
+            </thead>
+        
+            {% set incremento= namespace(a=0)  %}
+            {% set suma = 1 %}
+            {% for table in data %}
+            <tr>
+              
+              {% set incremento.a = incremento.a + 1  %}
+                
+              
+               <!-- <td style="text-align: center;">{{table.1}}</td> -->               
+                <td style="text-align: center;">{{table.3}}</td>
+                <td style="text-align: right;">{{table.5}}</td>
+                <td style="text-align: right;">{{table.6}}</td>
+                
+               
+                  {% if incremento.a == datolen  %}
+                  <td>
+                    <div class="row-md-7">  
+                      {% if table.6 == "0.00"  %}
+                      {% else %}
+                          <center>
+                            <a href="/abono/factura/{{table.1}}/{{cliente2}}" class="btn btn-sm btn-success ">Abonar</a>          
+                          </center>
+                      {% endif %}
+                  </td>
+                <td>
+                    <center>
+                <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>    
+                </center>
+                </td>
+                <td>
+                    <center>
+                <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                </center>
+            </td>
+                    </div>
+                  
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+            
+            
+
+        </table>
+
+    
+
+
+
+
+
+
+
+
+{% endblock%}
+<!--
+        <form class="form-signin" action="/update/relacion/factura{{contact.2}}" method="POST">
+            <div class="form-group">
+              <center>
+                <img src = "{{url_for ('static', filename = '/images/piramidelogo.png')}}" width = "100" height = "100" />
+              </center>
+            </div>
+
+            <div class="form-group">  
+              <input type="text" class="form-control" id="factura" name="factura" placeholder="Ingrese el nombre del cliente">                  
+            </div>
+        </form>
+-->

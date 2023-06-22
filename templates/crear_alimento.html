@@ -1,0 +1,61 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+
+{% with messages = get_flashed_messages(category_filter=["crear_alimento"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+<!--<div class="jumbotron"> -->
+  
+    <div class="card card-body mp-4 ml-4 " style="width: 600px !important; background: #5c5e5c;">
+      <form class="form-signin f" action="/crear_alimento_add" method="POST">
+       
+        <div class="form-group">   
+          <center>            
+            <h3 style="color:#171817"> Crear alimento</h3>
+          <!--<h3 style="color:#226918"> Ingresar Nueva Factura</h3>-->
+        </center>
+        </div>
+        <br>
+        <div class="form-group username">         
+           <h4 style="color: white !important;">Nombre del Alimento</h4>
+          <input type="text" class="form-control" id="nombre" name="nombre" >
+                   
+                
+        </div>
+        <hr style="background:white">
+        <br>
+        
+        
+       
+        
+        
+    
+          <div class="form-group">
+          <center>
+            <button class=" btn btn-sm btn-primary form-boton" type="submit">Ingresar</button>
+          </center>
+          </div>
+        
+          </form>
+    </div>
+  
+<!--</div> -->
+
+
+{% endblock%}
